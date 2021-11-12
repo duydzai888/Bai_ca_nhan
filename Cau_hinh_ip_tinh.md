@@ -1,8 +1,12 @@
 ﻿### Cấu hình ip tĩnh
-# 1. Mô hình
+ # 1. TOPO LAB
+- Giả lập trên VMware Workstation.
+- Centos 7 Minimal-2009 Server 64 bit và Ubuntu 20.04
+- Cần có ít nhất 2 máy để ping địa chỉ IP qua lại: máy vật lí, máy ảo và ubunbu
+# 2. Mô hình
 ![ip tĩnh](https://user-images.githubusercontent.com/84270045/141457434-0ba23097-3f35-4412-b98d-cbbdb86c0b92.png)
-# 2. Tiến hành cấu hình ip tĩnh
-### 2.1. Cấu hình ip trên Centos 7.
+# 3. Tiến hành cấu hình ip tĩnh
+### 3.1. Cấu hình ip trên Centos 7.
 - Kiểm tra card mạng tương ứng: Ta sử dụng lệnh `ip link show`.
 
 ![ip link show](https://user-images.githubusercontent.com/84270045/141282521-13359b2b-d0b8-4e70-8a35-3bb9c606d9a3.png)
@@ -16,7 +20,7 @@
 [root@client ~]# systemctl restart network
 ```
  **Vậy là bạn đã hoàn tất các thao tác để có thể tự cài đặt địa chỉ IP tĩnh trên CentOS 7 rồi.**
- ### 2.2 Cấu hình ip tĩnh trên Ubuntu20.
+ ### 3.2 Cấu hình ip tĩnh trên Ubuntu20.
  - Chuột phải và chọn Open Terminal.
  
  ![mở terminal](https://user-images.githubusercontent.com/84270045/141457781-d4ff3533-473c-4dcd-9f0b-3933ba11b25a.png)

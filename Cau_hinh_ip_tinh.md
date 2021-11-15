@@ -1,4 +1,4 @@
-### Cấu hình ip tĩnh
+### Cấu hình IP tĩnh
 # 1. TOPO LAB
 - Giả lập trên VMware Workstation.
 - Centos7 và Ubuntu20.

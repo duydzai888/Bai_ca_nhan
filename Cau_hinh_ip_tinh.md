@@ -1,8 +1,8 @@
-﻿### Cấu hình ip tĩnh
- # 1. TOPO LAB
+### Cấu hình ip tĩnh
+# 1. TOPO LAB
 - Giả lập trên VMware Workstation.
-- Centos 7 Minimal-2009 Server 64 bit và Ubuntu 20.04
-- Cần có ít nhất 2 máy để ping địa chỉ IP qua lại: máy vật lí, máy ảo và ubunbu
+- Centos7 và Ubuntu20.
+- Cần có ít nhất 2 máy để ping IP qua lại: máy vật lí, Client, Ubuntu, ...
 # 2. Mô hình
 ![ip tĩnh](https://user-images.githubusercontent.com/84270045/141457434-0ba23097-3f35-4412-b98d-cbbdb86c0b92.png)
 # 3. Tiến hành cấu hình ip tĩnh
@@ -21,28 +21,25 @@
 ```
  **Vậy là bạn đã hoàn tất các thao tác để có thể tự cài đặt địa chỉ IP tĩnh trên CentOS 7 rồi.**
  ### 3.2 Cấu hình ip tĩnh trên Ubuntu20.
- - Chuột phải và chọn Open Terminal.
+ - Kiểm tra IP hiện tại của máy bằng lệnh `networkctl status`
  
- ![mở terminal](https://user-images.githubusercontent.com/84270045/141457781-d4ff3533-473c-4dcd-9f0b-3933ba11b25a.png)
- - Sử dụng lệnh `nmcli dev show` để kiểm tra địa chỉ Gateway của máy.
+ ![ip tĩnh mới](https://user-images.githubusercontent.com/84270045/141717231-6ae5cea8-a25a-460d-8569-18804ad4e2f4.png)
+ - Ở trên ta thấy card `ens33` đang được sử dụng
+ - Tiếp theo ta truy cập vào tệp `netplan` bằng lệnh `cd /etc/netplan`. Tại đây ta dùng lệnh `ls` để xem các tệp hiện có trong thư mục `netplan`. Ta thấy có duy nhất 1 tệp `00-installer-config.yaml`, tiến hành truy cập và chỉnh sửa tệp này.
  
- ![gateway](https://user-images.githubusercontent.com/84270045/141458087-bc6d4cc1-30fb-48a6-81c9-04643c07428e.png)
- - Tiếp theo sử dụng lệnh `nm-connection-editor` để mở bảng Network Connections.
+ ![truy cập netplan](https://user-images.githubusercontent.com/84270045/141717409-1d4bf0c5-f99f-4faa-9245-7775e1ce3baf.png)
  
- ![Network](https://user-images.githubusercontent.com/84270045/141458603-faf8435e-0824-4f58-b96f-fad11445deb5.png)
+ - Khi truy cập thành công, ta tiến hành chỉnh sửa như hình dưới đây ( ấn phím `i` để chỉnh sửa tệp ):
  
- #### Đặt địa chỉ ip mới:
- B1: Chọn IPv4 Settings
+ ![giao diện netplan](https://user-images.githubusercontent.com/84270045/141717805-9a3be0a3-e08a-4cc3-a5ea-ffa2fdc653c7.png)
  
- B2: Tại dòng Method chọn Manual
+ - Sau khi chỉnh sửa xong, ta thoát chế độ `INSERT` ( ấn `esc` ) và gõ `:wq` để lưu và thoát file.
+ - Dùng lệnh `sudo netplan apply` để cập nhật IP mới:
  
- B3: Ấn vào `Add` để thêm địa chỉ IP
+ ![checck lại ip](https://user-images.githubusercontent.com/84270045/141718036-4f033473-fae7-4197-905e-1860aec9f7dc.png)
  
- B4: Nhập địa chỉ IP mới, Subnetmask và địa chỉ Gateway (địa chỉ Gateway phải trùng với Gateway của máy)
+ #### Ping ip từ máy khác:
  
- B5: Nhập địa chỉ DNS
+ ![ping ip trên máy vật lí](https://user-images.githubusercontent.com/84270045/141718717-9a66d6d7-640b-4e7a-9866-ce3c4ddfe028.png)
  
- B6: Ấn `Save`
- 
- ![ip mới của ubuntu](https://user-images.githubusercontent.com/84270045/141461420-1e960dc2-1e51-47db-97c5-c7a5cd138c4b.png)
   ## Vậy là đã hoàn thành công việc đặt địa chỉ IP tĩnh.

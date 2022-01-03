@@ -1,5 +1,8 @@
 ﻿# Cài đặt MariaDB trên Centos7
 ## Menu
+[1. Cấu hình Repo của MariaDB](#CauHinhRepo)
+
+[2.Cài đặt và thiết lập bảo mật MariaDB](#CaiDatVaThietLap)
 
 
 

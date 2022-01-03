@@ -1,9 +1,17 @@
 ﻿# SQL
+## Menu
+[1. Khái niệm về SQL](#KhaiNiemSQL)
+
+[2. Các câu lệnh trong SQL](#CauLenhSQL)
+
+[3. Các ưu điểm của SQL](#UuDiemCuaSQL)
 
 
 
 
 
+
+<a name="KhaiNiemSQL"></a>
 ### 1. Khái niệm về SQL
 `SQL` là viết tắt của `Structured Query Language`, nghĩa là ngôn ngữ truy vấn dữ liệu. Có thể coi ngôn ngữ SQL là ngôn ngữ chung mà bất cứ hệ thống cơ sở dữ liệu quan hệ (RDBMS) nào cũng phải đáp ứng, điển hình như: Oracle Database, SQL Server, MySQL…
 
@@ -12,7 +20,7 @@ Bất kì công ty nào lớn cũng cần xây dựng một hệ thống để l
 
 - *Trong khi, nếu lưu trữ thông tin vào một hệ thống cơ sở dữ liệu, bạn chỉ cần gõ một câu lệnh SQL ngắn là đã có thể trích xuất được thông tin em cần. Việc thêm/xóa/sửa cũng được thực hiện một cách dễ dàng, nhanh chóng.*
 
-
+<a name="CauLenhSQL"></a>
 ### 2. Các câu lệnh trong SQL 
 Các lệnh SQL tiêu chuẩn để tương tác với cơ sở dữ liệu quan hệ là `CREATE`, `SELECT`, `INSERT`, `UPDATE`, `DELETE` và `DROP`. Các lệnh này có thể được phân thành các nhóm sau dựa trên bản chất của chúng
 
@@ -22,7 +30,7 @@ Các lệnh SQL tiêu chuẩn để tương tác với cơ sở dữ liệu quan
 
 ![DCL](https://user-images.githubusercontent.com/84270045/145206726-e603cb9e-ed61-421e-b23b-e8e7c3d3b9f4.png)
 
-
+<a name="UuDiemCuaSQL"></a>
 ### 3. Các ưu điểm của SQL
 `SQL` được sử dụng phổ biến vì nó có các ưu điểm sau:
 

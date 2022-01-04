@@ -15,7 +15,7 @@ Trong hướng dẫn này mình sẽ hướng dẫn cài đặt MariaDB trên Ce
 
 Bạn có thể cấu hình các repo dựa theo hệ điều hành mà bạn sử dụng, MariaDB có thể cài đặt trên nhiều hệ điều hành khác nhau không phải chỉ cài được trên CentOS7.
 
-Hoặc có cách khác đơn giải hơn là sử dụng tập lệnh cấu hình repo của MariaDB bằng lệnh sau: `curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | bash -s -- --mariadb-server-version="mariadb-10.4`. Sau khi nhập lệnh ta ấn Enter và để quá trình cài đặt tự chạy. 
+Hoặc có cách khác đơn giải hơn là sử dụng tập lệnh cấu hình repo của MariaDB bằng lệnh sau: `curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | bash -s -- --mariadb-server-version="mariadb-10.4"`. Sau khi nhập lệnh ta ấn Enter và để quá trình cài đặt tự chạy. 
 
 
 <a name="CaiDatVaThietLap"></a>

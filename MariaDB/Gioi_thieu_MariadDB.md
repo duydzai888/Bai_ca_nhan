@@ -16,8 +16,7 @@
 
 MySQL được tích hợp apache, PHP. MySQL quản lý dữ liệu thông qua các cơ sở dữ liệu. Mỗi cơ sở dữ liệu có thể có nhiều bảng quan hệ chứa dữ liệu. MySQL cũng có cùng một cách truy xuất và mã lệnh tương tự với ngôn ngữ SQL. Phiên bản đầu tiên của MySQL phát hành vào năm 1995. 
 
-Công ty Sun Microsystems mua lại MySQL AB trong năm 2008
-Năm 2010 tập đoàn Oracle thâu tóm Sun Microsystems. Ngay lúc đó, đội ngũ phát triển của MySQL tách MySQL ra thành 1 nhánh riêng gọi là MariaDB. Oracle tiếp tục phát triển MySQL lên phiên bản 5.5.
+Năm 2010, khi tập đoàn Oracle thâu tóm Sun Microsystems, ngay lúc đó, đội ngũ phát triển của MySQL tách MySQL ra thành 1 nhánh riêng gọi là MariaDB. Oracle tiếp tục phát triển MySQL lên phiên bản 5.5.
 - 2013 MySQL phát hành phiên bản 5.6
 - 2015 MySQL phát hành phiên bản 5.7
 - MySQL đang được phát triển lên phiên bản 8.0

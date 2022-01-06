@@ -16,6 +16,12 @@
 
 MySQL được tích hợp apache, PHP. MySQL quản lý dữ liệu thông qua các cơ sở dữ liệu. Mỗi cơ sở dữ liệu có thể có nhiều bảng quan hệ chứa dữ liệu. MySQL cũng có cùng một cách truy xuất và mã lệnh tương tự với ngôn ngữ SQL. Phiên bản đầu tiên của MySQL phát hành vào năm 1995. 
 
+Công ty Sun Microsystems mua lại MySQL AB trong năm 2008
+Năm 2010 tập đoàn Oracle thâu tóm Sun Microsystems. Ngay lúc đó, đội ngũ phát triển của MySQL tách MySQL ra thành 1 nhánh riêng gọi là MariaDB. Oracle tiếp tục phát triển MySQL lên phiên bản 5.5.
+- 2013 MySQL phát hành phiên bản 5.6
+- 2015 MySQL phát hành phiên bản 5.7
+- MySQL đang được phát triển lên phiên bản 8.0
+
 <a name="MariaDB"></a>
 ### 2. MariaDB
 `MariaDB` được phát triển nhằm thay thế công nghệ cơ sở dữ liệu `MySQL`, vì thế nó tương thích và cho một hiệu suất cao hơn so với `MySQL`.
@@ -27,6 +33,10 @@ Năm 2008, sau khi Sun mua lại MySQL AB, Michael “Monty” Widenius rời kh
 Đầu năm 2009, Michael cùng với 1 vài đồng nghiệp khác bắt đầu tiến hành dự án chuyên sâu về công cụ lưu trữ MySQL, sau này trở thành `MariaDB`. Tên gọi MariaDB được đặt tên theo tên con gái út của Widenius – `Maria`. Sau nhiều lần nâng cấp và phát triển, hiện tại MariaDB đã ra mắt phiên bản mới nhất là MariaDB 10.1.
 
 MariaDB được hình thành dựa trên nền tảng của MySQL, vì thế nó kế thừa được hầu hết các chức năng cơ bản cần thiết của MySQL. Bên cạnh đó, MariaDB cũng phát triển thêm nhiều tính năng mới và có sự nâng cấp hơn về cơ chế lưu trữ, tối ưu máy chủ.
+
+Số phiên bản của MariaDB tuân theo phiên bản của MySQL đến phiên bản 5.5. Như vậy, MariaDB 5.5 cung cấp tất cả các tính năng MySQL 5.5. Có khoảng cách giữa các phiên bản MySQL từ 5.1 đến 5.5, trong khi MariaDB phát hành phiên bản 5.2 và 5.3.
+
+Sau phiên bản 5.5, các nhà phát triển của MariaDB quyết định bắt đầu một nhánh số 10, nỗ lực để làm rõ rằng MariaDB 10.0 sẽ không nhập tất cả các tính năng từ MySQL 5.6.
 
 **Các phiên bản của MariaDB**
 ![Phiên bản mariadb](https://user-images.githubusercontent.com/84270045/148376864-d75907f7-c045-4803-b21e-d352125147d8.png)

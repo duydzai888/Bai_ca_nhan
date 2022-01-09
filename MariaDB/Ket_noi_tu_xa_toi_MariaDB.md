@@ -15,6 +15,7 @@
 
 Trước tiên phải kiểm tra xem MariaDB đang chạy ở phiên bản nào, ta sử dụng lệnh `netstat -lutnp`
 ![port mariadb](https://user-images.githubusercontent.com/84270045/148676777-fdb90cd0-2f8e-43c5-b9d0-5788d5692819.png)
+
 Hiện tại thì MariaDB đang chạy trên phiên bản 6. Nếu máy hiện đang ở phiên bản 4 thì sẽ không thể kết nối từ xa được.
 
 <a name="CauHinhDatabseServer"></a>

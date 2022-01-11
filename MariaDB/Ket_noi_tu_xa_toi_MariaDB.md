@@ -16,6 +16,7 @@
 
 Trước tiên phải kiểm tra xem MariaDB đang chạy ở trên port nào, ta sử dụng lệnh `netstat -lutnp`
 ![port mariadb](https://user-images.githubusercontent.com/84270045/148676777-fdb90cd0-2f8e-43c5-b9d0-5788d5692819.png)
+
 Hiện tại thì MariaDB đang chạy ở trên port 3306 và chạy trên IPv6. 
 
 <a name="CauHinhDatabseServer"></a>

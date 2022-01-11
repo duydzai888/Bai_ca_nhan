@@ -9,14 +9,14 @@
 - [3.2. Tìm kiếm User trong Database và kiểm tra quyền của User.](#TimKiemUser)
 - [3.3. Xóa User trong Database.](#XoaUser)
 
+## Mô hình
+![remove connection](https://user-images.githubusercontent.com/84270045/148937089-7bce1620-05dc-4359-91ec-2080af215486.png)
 
 
 
-
-Trước tiên phải kiểm tra xem MariaDB đang chạy ở phiên bản nào, ta sử dụng lệnh `netstat -lutnp`
+Trước tiên phải kiểm tra xem MariaDB đang chạy ở trên port nào, ta sử dụng lệnh `netstat -lutnp`
 ![port mariadb](https://user-images.githubusercontent.com/84270045/148676777-fdb90cd0-2f8e-43c5-b9d0-5788d5692819.png)
-
-Hiện tại thì MariaDB đang chạy trên phiên bản 6. Nếu máy hiện đang ở phiên bản 4 thì sẽ không thể kết nối từ xa được.
+Hiện tại thì MariaDB đang chạy ở trên port 3306 và chạy trên IPv6. 
 
 <a name="CauHinhDatabseServer"></a>
 ### 1. Cấu hình database server.

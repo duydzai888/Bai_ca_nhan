@@ -1,15 +1,14 @@
 # Kết nối từ xa tới MariaDB
 ## Menu
-[1. Cấu hình database server.](#CauHinhDatabseServer)
 
-[2. Kết nối từ xa tới MariaDB](#KetNoiTuXa)
+[1. Kết nối từ xa tới MariaDB](#KetNoiTuXa)
 
-[3. Cài đặt phần mềm.](#CaiDatPhanMem)
+[2. Cài đặt phần mềm.](#CaiDatPhanMem)
 
-[4. Tạo Database user và gán quyền cho user này trên database.](#TaoDatabaseUserVaGanQuyenChoUser)
-- [4.1. Tạo Database và User trên Database](#TaoDatabaseVaUser)
-- [4.2. Tìm kiếm User trong Database và kiểm tra quyền của User.](#TimKiemUser)
-- [4.3. Xóa User trong Database.](#XoaUser)
+[3. Tạo Database user và gán quyền cho user này trên database.](#TaoDatabaseUserVaGanQuyenChoUser)
+- [3.1. Tạo Database và User trên Database](#TaoDatabaseVaUser)
+- [3.2. Tìm kiếm User trong Database và kiểm tra quyền của User.](#TimKiemUser)
+- [3.3. Xóa User trong Database.](#XoaUser)
 
 ## Mô hình
 ![remove connection](https://user-images.githubusercontent.com/84270045/148937089-7bce1620-05dc-4359-91ec-2080af215486.png)
@@ -21,24 +20,8 @@ Trước tiên phải kiểm tra xem MariaDB đang chạy ở trên port nào, t
 
 Hiện tại thì MariaDB đang chạy ở trên port 3306 và chạy trên IPv6. 
 
-<a name="CauHinhDatabseServer"></a>
-### 1. Cấu hình database server.
-Ta tiến hành truy cập vào MariaDB:
-```
-[root@duy ~]# mysql
-Welcome to the MariaDB monitor.  Commands end with ; or \g.
-Your MariaDB connection id is 15
-Server version: 10.4.22-MariaDB MariaDB Server
-
-Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
-
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-
-MariaDB [(none)]>
-```
-
 <a name="KetNoiTuXa"></a>
-### 2. Kết nối từ xa tới MariaDB
+### 1. Cấu hình Database Server và tiến hành kết nối từ xa tới MariaDB
 
 Để có thể kết nối từ xa tới MariaDB Server thì ta cần thêm dòng `bin-address=0.0.0.0` vào file cấu hình server. Ta làm như sau:
 - Trước tiên ta `cd`đến thư mục `etc`:
@@ -74,7 +57,7 @@ MariaDB [(none)]> SELECT User, Host FROM mysql.user WHERE Host <> 'localhost';
 Sau khi hoàn thành thì đã có thể kết nối tới MariaDB từ xa.
 
 <a name="CaiDatPhanMem"></a>
-### 3. Cài đặt phần mềm 
+### 2. Cài đặt phần mềm 
 Thực hiện kết nối từ Windows tới MariaDB. Ta tiến hành tải chương trình Navicat Premium. Sau khi cài đặt xong, ta truy cập vào Navicat và tiến hành kết nối:
 ![kết nối mariadb](https://user-images.githubusercontent.com/84270045/148677399-dd624f61-4086-48fa-b1e8-d18d3041cda7.png)
 
@@ -97,10 +80,10 @@ Biểu tượng của kết nối sẽ chuyển từ màu xám sang màu vàng t
 Sau khi chọn `Console` xong thì ta sẽ ở trong giao diện dòng lệnh điều khiển của Database Server.
 
 <a name="TaoDatabaseUserVaGanQuyenChoUser"></a>
-### 4. Tạo Database user và gán quyền cho user này trên database.
+### 3. Tạo Database user và gán quyền cho user này trên database.
 
 <a name="TaoDatabaseVaUser"></a>
-##### 4.1. Tạo Database và User trên Database.
+##### 3.1. Tạo Database và User trên Database.
 Ta sử dụng lệnh `CREATE database laiduy;` để tạo database có tên là `laiduy`
 ```
 mariadb> CREATE databse laiduy;
@@ -119,7 +102,7 @@ Query OK, 0 rows affected (0.01 sec)
 ```
 
 <a name="TimKiemUser"></a>
-##### 4.2. Tìm kiếm User trong Database và kiểm tra quyền của User.
+##### 3.2. Tìm kiếm User trong Database và kiểm tra quyền của User.
 Ta sử dụng lệnh: `SELECT User, Host FROM mysql.user`: chọn User và Host từ Databse Mysql.
 ```
 mariadb> SELECT User, Host FROM mysql.user;
@@ -152,7 +135,7 @@ mariadb> SHOW GRANTS FOR 'khanhduy_user'@'localhost';
 ```
 
 <a name="XoaUser"></a>
-##### 4.3. Xóa User trong Database.
+##### 3.3. Xóa User trong Database.
 Sử dụng lệnh: `REVOKE ALL PRIVILEGES, GRANT OPTION FROM 'khanhduy_user'@'localhost';`
 ```
 mariadb> REVOKE ALL PRIVILEGES, GRANT OPTION FROM 'khanhduy_user'@'localhost';

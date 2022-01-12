@@ -1,7 +1,7 @@
 # Kết nối từ xa tới MariaDB
 ## Menu
 
-[1. Kết nối từ xa tới MariaDB](#KetNoiTuXa)
+[1. Cấu hình Database Server và tiến hành kết nối từ xa tới MariaDB](#CauHinhVaKetNoiTuXa)
 
 [2. Cài đặt phần mềm.](#CaiDatPhanMem)
 
@@ -16,21 +16,25 @@
 
 
 Trước tiên phải kiểm tra xem MariaDB đang chạy ở trên port nào, ta sử dụng lệnh `netstat -lutnp`
+
 ![port mariadb](https://user-images.githubusercontent.com/84270045/148676777-fdb90cd0-2f8e-43c5-b9d0-5788d5692819.png)
 
 Hiện tại thì MariaDB đang chạy ở trên port 3306 và chạy trên IPv6. 
 
-<a name="KetNoiTuXa"></a>
+<a name="CauHinhVaKetNoiTuXa"></a>
 ### 1. Cấu hình Database Server và tiến hành kết nối từ xa tới MariaDB
 
 Để có thể kết nối từ xa tới MariaDB Server thì ta cần thêm dòng `bin-address=0.0.0.0` vào file cấu hình server. Ta làm như sau:
 - Trước tiên ta `cd`đến thư mục `etc`:
+
 ![etc](https://user-images.githubusercontent.com/84270045/149128796-8300af64-994a-4431-8237-4c30219bf367.png)
 
 - Tại đây ta thấy xuất hiện thự mục `my.cnf.d`. Đây là thư mục chứa thông số mô ta của Server và Client, ta tiếp tục `cd` và thư mục `my.cnf.d`:
+
 ![cau_hinh_server](https://user-images.githubusercontent.com/84270045/149129281-876d6b77-7df8-448f-8acb-7d216c554ca7.png)
 
 - Sau khi truy cập được vào thư mục `my.cnf.d` ta sử dụng lệnh `vi` để mở file Server và chỉnh sửa:
+
 ![bin_address](https://user-images.githubusercontent.com/84270045/149129836-596f1866-856e-410e-8c78-433e0954d47f.png)
 
 Mặc định ban đầu đầu `bind-address=127.0.0.1` ta sẽ đổi thành `bind-address=0.0.0.0`. Sau khi thay đổi ta tiến hành lưu file và khởi động lại MariaDB.

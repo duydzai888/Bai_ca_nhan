@@ -2,12 +2,14 @@
 ## Menu
 [1. Cấu hình database server.](#CauHinhDatabseServer)
 
-[2. Cài đặt phần mềm.](#CaiDatPhanMem)
+[2. Kết nối từ xa tới MariaDB](#KetNoiTuXa)
 
-[3. Tạo Database user và gán quyền cho user này trên database.](#TaoDatabaseUserVaGanQuyenChoUser)
-- [3.1. Tạo Database và User trên Database](#TaoDatabaseVaUser)
-- [3.2. Tìm kiếm User trong Database và kiểm tra quyền của User.](#TimKiemUser)
-- [3.3. Xóa User trong Database.](#XoaUser)
+[3. Cài đặt phần mềm.](#CaiDatPhanMem)
+
+[4. Tạo Database user và gán quyền cho user này trên database.](#TaoDatabaseUserVaGanQuyenChoUser)
+- [4.1. Tạo Database và User trên Database](#TaoDatabaseVaUser)
+- [4.2. Tìm kiếm User trong Database và kiểm tra quyền của User.](#TimKiemUser)
+- [4.3. Xóa User trong Database.](#XoaUser)
 
 ## Mô hình
 ![remove connection](https://user-images.githubusercontent.com/84270045/148937089-7bce1620-05dc-4359-91ec-2080af215486.png)
@@ -34,7 +36,25 @@ Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
 MariaDB [(none)]>
 ```
-Tại đây ta đưa ra câu lệnh query SELECT User, Host ở trong database mysql tương tác với bảng tới host có chữ `localhost`:
+
+<a name="KetNoiTuXa"></a>
+### 2. Kết nối từ xa tới MariaDB
+
+Để có thể kết nối từ xa tới MariaDB Server thì ta cần thêm dòng `bin-address=0.0.0.0` vào file cấu hình server. Ta làm như sau:
+- Trước tiên ta `cd`đến thư mục `etc`:
+![etc](https://user-images.githubusercontent.com/84270045/149128796-8300af64-994a-4431-8237-4c30219bf367.png)
+
+- Tại đây ta thấy xuất hiện thự mục `my.cnf.d`. Đây là thư mục chứa thông số mô ta của Server và Client, ta tiếp tục `cd` và thư mục `my.cnf.d`:
+![cau_hinh_server](https://user-images.githubusercontent.com/84270045/149129281-876d6b77-7df8-448f-8acb-7d216c554ca7.png)
+
+- Sau khi truy cập được vào thư mục `my.cnf.d` ta sử dụng lệnh `vi` để mở file Server và chỉnh sửa:
+![bin_address](https://user-images.githubusercontent.com/84270045/149129836-596f1866-856e-410e-8c78-433e0954d47f.png)
+
+Mặc định ban đầu đầu `bind-address=127.0.0.1` ta sẽ đổi thành `bind-address=0.0.0.0`. Sau khi thay đổi ta tiến hành lưu file và khởi động lại MariaDB.
+```
+[root@duy my.cnf.d]# systemctl restart mariadb
+```
+
 
 Nếu muốn có thể kết nối với MariaDB từ bất kì cái ip nào ở đường mạng `192.124.1.0/24` thì lúc này ta sử dụng câu lệnh `GRANT ALL PRIVILEGES ON *.* TO 'root'@'192.168.1.%' IDENTIFIED BY 'Password' WITH GRANT OPTION;`
 
@@ -54,7 +74,7 @@ MariaDB [(none)]> SELECT User, Host FROM mysql.user WHERE Host <> 'localhost';
 Sau khi hoàn thành thì đã có thể kết nối tới MariaDB từ xa.
 
 <a name="CaiDatPhanMem"></a>
-### 2. Cài đặt phần mềm 
+### 3. Cài đặt phần mềm 
 Thực hiện kết nối từ Windows tới MariaDB. Ta tiến hành tải chương trình Navicat Premium. Sau khi cài đặt xong, ta truy cập vào Navicat và tiến hành kết nối:
 ![kết nối mariadb](https://user-images.githubusercontent.com/84270045/148677399-dd624f61-4086-48fa-b1e8-d18d3041cda7.png)
 
@@ -77,10 +97,10 @@ Biểu tượng của kết nối sẽ chuyển từ màu xám sang màu vàng t
 Sau khi chọn `Console` xong thì ta sẽ ở trong giao diện dòng lệnh điều khiển của Database Server.
 
 <a name="TaoDatabaseUserVaGanQuyenChoUser"></a>
-### 3. Tạo Database user và gán quyền cho user này trên database.
+### 4. Tạo Database user và gán quyền cho user này trên database.
 
 <a name="TaoDatabaseVaUser"></a>
-##### 3.1. Tạo Database và User trên Database.
+##### 4.1. Tạo Database và User trên Database.
 Ta sử dụng lệnh `CREATE database laiduy;` để tạo database có tên là `laiduy`
 ```
 mariadb> CREATE databse laiduy;
@@ -99,7 +119,7 @@ Query OK, 0 rows affected (0.01 sec)
 ```
 
 <a name="TimKiemUser"></a>
-##### 3.2. Tìm kiếm User trong Database và kiểm tra quyền của User.
+##### 4.2. Tìm kiếm User trong Database và kiểm tra quyền của User.
 Ta sử dụng lệnh: `SELECT User, Host FROM mysql.user`: chọn User và Host từ Databse Mysql.
 ```
 mariadb> SELECT User, Host FROM mysql.user;
@@ -132,7 +152,7 @@ mariadb> SHOW GRANTS FOR 'khanhduy_user'@'localhost';
 ```
 
 <a name="XoaUser"></a>
-##### 3.3. Xóa User trong Database.
+##### 4.3. Xóa User trong Database.
 Sử dụng lệnh: `REVOKE ALL PRIVILEGES, GRANT OPTION FROM 'khanhduy_user'@'localhost';`
 ```
 mariadb> REVOKE ALL PRIVILEGES, GRANT OPTION FROM 'khanhduy_user'@'localhost';

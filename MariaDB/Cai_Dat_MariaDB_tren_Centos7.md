@@ -1,183 +1,158 @@
-# Kết nối từ xa tới MariaDB
+# Cài đặt MariaDB trên Centos7
 ## Menu
+[1. Cấu hình Repo của MariaDB](#CauHinhRepo)
 
-[1. Cấu hình Database Server và tiến hành kết nối từ xa tới MariaDB](#CauHinhVaKetNoiTuXa)
-
-[2. Cài đặt phần mềm.](#CaiDatPhanMem)
-
-[3. Tạo Database user và gán quyền cho user này trên database.](#TaoDatabaseUserVaGanQuyenChoUser)
-- [3.1. Tạo Database và User trên Database](#TaoDatabaseVaUser)
-- [3.2. Tìm kiếm User trong Database và kiểm tra quyền của User.](#TimKiemUser)
-- [3.3. Xóa User trong Database.](#XoaUser)
-
-## Mô hình
-![remove connection](https://user-images.githubusercontent.com/84270045/148937089-7bce1620-05dc-4359-91ec-2080af215486.png)
+[2.Cài đặt và thiết lập bảo mật MariaDB](#CaiDatVaThietLap)
 
 
 
-Trước tiên phải kiểm tra xem MariaDB đang chạy ở trên port nào, ta sử dụng lệnh `netstat -lutnp`
 
-![port mariadb](https://user-images.githubusercontent.com/84270045/148676777-fdb90cd0-2f8e-43c5-b9d0-5788d5692819.png)
+<a name="CauHinhRepo"></a>
+### 1. Cấu hình Repo của MariaDB
+Trước khi cài đặt Mariadb bạn cần chú ý là hệ điều hành chưa có cài đặt Mysql hoặc Mariadb nào trước đó để tránh việc mất dữ liệu hoặc gây ra lỗi sau khi cài đặt.
 
-Hiện tại thì MariaDB đang chạy ở trên port 3306 và chạy trên IPv6. 
+Trong hướng dẫn này mình sẽ hướng dẫn cài đặt MariaDB trên CentOS7 với yum từ repo MariaDB.
 
-<a name="CauHinhVaKetNoiTuXa"></a>
-### 1. Cấu hình Database Server và tiến hành kết nối từ xa tới MariaDB
+Bạn có thể cấu hình các repo dựa theo hệ điều hành mà bạn sử dụng, MariaDB có thể cài đặt trên nhiều hệ điều hành khác nhau không phải chỉ cài được trên CentOS7.
 
-Để có thể kết nối từ xa tới MariaDB Server thì ta cần thêm dòng `bin-address=0.0.0.0` vào file cấu hình server. Ta làm như sau:
-- Trước tiên ta `cd`đến thư mục `etc`:
+Hoặc có cách khác đơn giải hơn là sử dụng tập lệnh cấu hình repo của MariaDB bằng lệnh sau: `curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | bash -s -- --mariadb-server-version="mariadb-10.4"`. Sau khi nhập lệnh ta ấn Enter và để quá trình cài đặt tự chạy. 
 
-![etc](https://user-images.githubusercontent.com/84270045/149128796-8300af64-994a-4431-8237-4c30219bf367.png)
 
-- Tại đây ta thấy xuất hiện thự mục `my.cnf.d`. Đây là thư mục chứa thông số mô ta của Server và Client, ta tiếp tục `cd` và thư mục `my.cnf.d`:
+<a name="CaiDatVaThietLap"></a>
+### 2. Cài đặt và thiết lập bảo mật MariaDB
+Sau khi cài đặt repo hoàn tất ta có thể cài đặt MariaDB bằng lệnh: `yum install MariaDB-server MariaDB-client -y`
 
-![cau_hinh_server](https://user-images.githubusercontent.com/84270045/149129281-876d6b77-7df8-448f-8acb-7d216c554ca7.png)
-
-- Sau khi truy cập được vào thư mục `my.cnf.d` ta sử dụng lệnh `vi` để mở file Server và chỉnh sửa:
-
-![bin_address](https://user-images.githubusercontent.com/84270045/149129836-596f1866-856e-410e-8c78-433e0954d47f.png)
-
-Mặc định ban đầu đầu `bind-address=127.0.0.1` ta sẽ đổi thành `bind-address=0.0.0.0`. Sau khi thay đổi ta tiến hành lưu file và khởi động lại MariaDB.
 ```
-[root@duy my.cnf.d]# systemctl restart mariadb
+[root@duy ~]# yum install MariaDB-server MariaDB-client -y
+Loaded plugins: fastestmirror
+Determining fastest mirrors
+ * base: mirrors.cloudfly.vn
+ * extras: mirrors.cloudfly.vn
+ * updates: mirrors.bkns.vn
+base                                                                                                                                   | 3.6 kB  00:00:00
+extras                                                                                                                                 | 2.9 kB  00:00:00
+mariadb-main                                                                                                                           | 3.4 kB  00:00:00
+mariadb-maxscale                                                                                                                       | 2.5 kB  00:00:00
+mariadb-tools                                                                                                                          | 2.9 kB  00:00:00
+updates                                                                                                                                | 2.9 kB  00:00:00
+(1/8): base/7/x86_64/group_gz                                                                                                          | 153 kB  00:00:00
+(2/8): extras/7/x86_64/primary_db                                                                                                      | 243 kB  00:00:01
+(3/8): mariadb-main/updateinfo                                                                                                         | 5.7 kB  00:00:03
+(4/8): base/7/x86_64/primary_db                                                                                                        | 6.1 MB  00:00:04
+(5/8): mariadb-main/primary_db                                                                                                         |  61 kB  00:00:04
+(6/8): mariadb-tools/primary_db                                                                                                        |  17 kB  00:00:04
+(7/8): mariadb-maxscale/primary_db                                                                                                     | 7.1 kB  00:00:05
+(8/8): updates/7/x86_64/primary_db                                                                                                     |  13 MB  00:00:06
+...
+Replaced:
+  mariadb-libs.x86_64 1:5.5.68-1.el7
+
+Complete!
 ```
+Sau khi nhận được thông báo cài đặt `Complete!` chúng ta sẽ khởi động MariaDB server và bắt đầu thiết lập bảo mật  cho Mariadb bằng các lệnh sau:
+- `systemctl enable mariadb`: Cho phép MariaDB khởi động khi reboot server
 
+- `systemctl start mariadb`: Khởi động Mariadb
 
-Nếu muốn có thể kết nối với MariaDB từ bất kì cái ip nào ở đường mạng `192.124.1.0/24` thì lúc này ta sử dụng câu lệnh `GRANT ALL PRIVILEGES ON *.* TO 'root'@'192.168.1.%' IDENTIFIED BY 'Password' WITH GRANT OPTION;`
+- `mysql_secure_installation`: Thiết lập bảo mật cho Mariadb
 
-Dấu `%` là wildcard đại diện cho tất cả địa chỉ IP thuộc đường mạng `192.168.1.0/24` và mình quy định root database của mình bằng 1 password nào đó để tăng độ bảo mật (thay đổi Password mà bạn muốn vào "'Password'" ở câu lệnh trên).
-
-Tại đây ta đưa ra câu lệnh query SELECT User, Host ở trong database mysql tương tác với bảng tới host có chữ `localhost`:
+Sau khi chạy lệnh `mysql_secure_installation` thì sẽ xuất hiện các lựa chọn, ta tiến hành chọn như sau:
 ```
-MariaDB [(none)]> SELECT User, Host FROM mysql.user WHERE Host <> 'localhost';
-+---------------------+---------------+
-| User                | Host          |
-+---------------------+---------------+
-| root                | 192.168.1.%   |
-| root                | 192.168.124.% |
-+---------------------+---------------+
-3 rows in set (0.012 sec)
+Enter current password for root (enter for none): Nhấn phím Enter
+Switch to unix_socket authentication [Y/n]: n
+Change the root password? [Y/n]: Y
+New password: Nhập password root các bạn muốn tạo
+Re-enter new password: Nhập lại password root
+Remove anonymous users? [Y/n] : Y
+Disallow root login remotely? [Y/n]: Y
+Remove test database and access to it? [Y/n] : Y
+Reload privilege tables now? [Y/n]: Y
 ```
-Sau khi hoàn thành thì đã có thể kết nối tới MariaDB từ xa.
-
-<a name="CaiDatPhanMem"></a>
-### 2. Cài đặt phần mềm 
-Thực hiện kết nối từ Windows tới MariaDB. Ta tiến hành tải chương trình Navicat Premium. Sau khi cài đặt xong, ta truy cập vào Navicat và tiến hành kết nối:
-![kết nối mariadb](https://user-images.githubusercontent.com/84270045/148677399-dd624f61-4086-48fa-b1e8-d18d3041cda7.png)
-
-Xuất hiện giao diện:
-![localhost](https://user-images.githubusercontent.com/84270045/148677442-9b2c941b-a072-4b4b-adb5-e23dff824142.png)
-
-Tại đây ta tiến hành đặt 
-
-`Connection Name: `: Đặt tùy ý
-
-`Host: `: địa chỉ ip 
-    
-`Password: `: Password root database
-
-Sau khi nhấn OK thì sẽ xuất hiện tên của kết nối ở bên trái màn hình, ta nhấn chuột phải vào và chọn `Open Connection`
-![centos](https://user-images.githubusercontent.com/84270045/148677783-bdd73503-cca5-4d55-b26f-0a16243d0fd5.png)
-
-Biểu tượng của kết nối sẽ chuyển từ màu xám sang màu vàng tức là đã mở kết nối thành công. Ta tiếp tục chuột phải vào tên của kết nối và chọn `Console...`
-![console](https://user-images.githubusercontent.com/84270045/148677886-3cfdb577-9a93-4250-8f29-7af802b20aa3.png)
-Sau khi chọn `Console` xong thì ta sẽ ở trong giao diện dòng lệnh điều khiển của Database Server.
-
-<a name="TaoDatabaseUserVaGanQuyenChoUser"></a>
-### 3. Tạo Database user và gán quyền cho user này trên database.
-
-<a name="TaoDatabaseVaUser"></a>
-##### 3.1. Tạo Database và User trên Database.
-Ta sử dụng lệnh `CREATE database laiduy;` để tạo database có tên là `laiduy`
+Kết quả:
 ```
-mariadb> CREATE databse laiduy;
-Query OK, 1 row affected (0.02 sec)
-```
+[root@duy ~]# mysql_secure_installation
 
-Sau đó ta tạo 1 User tên là `laiduy_user` và có mật khẩu là `password`:
-```
-mariadb> CREATE USER 'khanhduy_user'@'localhost' IDENTIFIED BY 'password';
-Query OK, 0 rows affected (0.01 sec)
-```
- Và ta có thể cho User `khanhduy` có toàn quyền trên database `laiduy` bằng cách sử dụng lệnh: `GRANT ALL PRIVILEGES ON laiduy.* TO 'khanhduy_user'@'localhost';`
- ```
- mariadb> GRANT ALL PRIVILEGES ON laiduy.* TO 'khanhduy_user'@'localhost';
-Query OK, 0 rows affected (0.01 sec)
-```
+NOTE: RUNNING ALL PARTS OF THIS SCRIPT IS RECOMMENDED FOR ALL MariaDB
+      SERVERS IN PRODUCTION USE!  PLEASE READ EACH STEP CAREFULLY!
 
-<a name="TimKiemUser"></a>
-##### 3.2. Tìm kiếm User trong Database và kiểm tra quyền của User.
-Ta sử dụng lệnh: `SELECT User, Host FROM mysql.user`: chọn User và Host từ Databse Mysql.
-```
-mariadb> SELECT User, Host FROM mysql.user;
-+---------------------+---------------+
-| User                | Host          |
-+---------------------+---------------+
-| root'@192.168.124.% | %             |
-| root                | 192.168.1.%   |
-| root                | 192.168.124.% |
-| khanhduy_user       | localhost     |
-| laiduy_user         | localhost     |
-| mariadb.sys         | localhost     |
-| mysql               | localhost     |
-| root                | localhost     |
-| wpuser              | localhost     |
-+---------------------+---------------+
-9 rows in set (0.06 sec)
-```
-  
-Để xem các quyền được cấp phát cho User vừa tạo, ta sử dụng lệnh: `SHOW GRANT FOR 'khanhduy_user'@'localhost';`
-```
-mariadb> SHOW GRANTS FOR 'khanhduy_user'@'localhost';
-+----------------------------------------------------------------------------------------------------------------------+
-| Grants for khanhduy_user@localhost                                                                                   |
-+----------------------------------------------------------------------------------------------------------------------+
-| GRANT USAGE ON *.* TO `khanhduy_user`@`localhost` IDENTIFIED BY PASSWORD '*81E40896EAF96945283B847E296B16075109F08E' |
-| GRANT ALL PRIVILEGES ON `laiduy`.* TO `khanhduy_user`@`localhost`                                                    |
-+----------------------------------------------------------------------------------------------------------------------+
-2 rows in set (0.06 sec)
-```
+In order to log into MariaDB to secure it, we'll need the current
+password for the root user. If you've just installed MariaDB, and
+haven't set the root password yet, you should just press enter here.
 
-<a name="XoaUser"></a>
-##### 3.3. Xóa User trong Database.
-Sử dụng lệnh: `REVOKE ALL PRIVILEGES, GRANT OPTION FROM 'khanhduy_user'@'localhost';`
-```
-mariadb> REVOKE ALL PRIVILEGES, GRANT OPTION FROM 'khanhduy_user'@'localhost';
-Query OK, 0 rows affected (0.00 sec)
+Enter current password for root (enter for none):
+OK, successfully used password, moving on...
+
+Setting the root password or using the unix_socket ensures that nobody
+can log into the MariaDB root user without the proper authorisation.
+
+You already have your root account protected, so you can safely answer 'n'.
+
+Switch to unix_socket authentication [Y/n] n
+' ... skipping.
+
+You already have your root account protected, so you can safely answer 'n'.
+
+Change the root password? [Y/n] n
+You already have your root account protected, so you can safely answer 'n'.
+
+Change the root password? [Y/n] n
+ ... skipping.
+
+By default, a MariaDB installation has an anonymous user, allowing anyone
+to log into MariaDB without having to have a user account created for
+them.  This is intended only for testing, and to make the installation
+go a bit smoother.  You should remove them before moving into a
+production environment.
+
+Remove anonymous users? [Y/n] Y
+ ... Success!
+
+Normally, root should only be allowed to connect from 'localhost'.  This
+ensures that someone cannot guess at the root password from the network.
+
+Disallow root login remotely? [Y/n] Y
+ ... Success!
+
+By default, MariaDB comes with a database named 'test' that anyone can
+access.  This is also intended only for testing, and should be removed
+before moving into a production environment.
+
+Remove test database and access to it? [Y/n] Y
+ - Dropping test database...
+ ... Success!
+ - Removing privileges on test database...
+ ... Success!
+
+Reloading the privilege tables will ensure that all changes made so far
+will take effect immediately.
+
+Reload privilege tables now? [Y/n] Y
+ ... Success!
+
+Cleaning up...
+
+All done!  If you've completed all of the above steps, your MariaDB
+installation should now be secure.
+
+Thanks for using MariaDB!
 ```
 
-Ta có thể kiểm tra xem User đã được gỡ bỏ hay chưa bằng lệnh `SHOW GRANTS FOR 'khanhduy_user'@'localhost';` như ở trên. Ta có thể thấy kết quả mới khác với kết quả phía trên là đã bị mất đi dòng `GRANT ALL PRIVILEGES ON 'laiduy'.* TO 'khanhduy_user'@'localhost'`
-```
-mariadb> SHOW GRANTS FOR 'khanhduy_user'@'localhost';
-+----------------------------------------------------------------------------------------------------------------------+
-| Grants for khanhduy_user@localhost                                                                                   |
-+----------------------------------------------------------------------------------------------------------------------+
-| GRANT USAGE ON *.* TO `khanhduy_user`@`localhost` IDENTIFIED BY PASSWORD '*81E40896EAF96945283B847E296B16075109F08E' |
-+----------------------------------------------------------------------------------------------------------------------+
-1 row in set (0.07 sec)
-```
+Như vậy là đã cài đặt hoàn tất, bạn có thể dùng lệnh sau để truy cập MariaDB để kiểm tra hoạt động: `mysql -u root -p`
 
-Để xóa User, ta sử dụng lệnh: `DROP USER 'khanhduy_user'@'localhost';`
+Lưu ý: ***Sau khi gõ lệnh trên hệ thống sẽ yêu cầu bạn nhập mật khẩu root Mariadb mà bạn đã khởi tạo trong phần `mysql_secure_installation` trước đó.***
 ```
-mariadb> DROP USER 'khanhduy_user'@'localhost';
-Query OK, 0 rows affected (0.00 sec)
-```
- Ta có thể kiểm tra lại bằng lệnh: `SELECT User, Host FROM mysql.user;`
- ```
- mariadb> SELECT User, Host FROM mysql.user;
-+---------------------+---------------+
-| User                | Host          |
-+---------------------+---------------+
-| root'@192.168.124.% | %             |
-| root                | 192.168.1.%   |
-| root                | 192.168.124.% |
-| laiduy_user         | localhost     |
-| mariadb.sys         | localhost     |
-| mysql               | localhost     |
-| root                | localhost     |
-| wpuser              | localhost     |
-+---------------------+---------------+
-8 rows in set (0.09 sec)
-```
+[root@duy ~]# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 10.4.22-MariaDB MariaDB Server
 
-Vậy là ta đã kết nối từ xa tới MariaDB thành công, có thể tạo được Database và User trong Database đó.
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> 
+```
+Hoặc ta có thể sử dụng lệnh `mysql -v`
+
+Sau khi hoàn tất bạn chỉ cần gõ lệnh `mysql` để truy cập vào MariaDb

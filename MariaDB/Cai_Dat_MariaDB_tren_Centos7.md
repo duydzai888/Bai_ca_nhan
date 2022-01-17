@@ -1,6 +1,7 @@
 # Kết nối từ xa tới MariaDB
 ## Menu
-[1. Cấu hình database server.](#CauHinhDatabseServer)
+
+[1. Cấu hình Database Server và tiến hành kết nối từ xa tới MariaDB](#CauHinhVaKetNoiTuXa)
 
 [2. Cài đặt phần mềm.](#CaiDatPhanMem)
 
@@ -10,31 +11,37 @@
 - [3.3. Xóa User trong Database.](#XoaUser)
 
 ## Mô hình
-![remove connection](https://user-images.githubusercontent.com/84270045/148754819-c3549855-e61e-42dd-807f-326417c85d2e.png)
+![remove connection](https://user-images.githubusercontent.com/84270045/148937089-7bce1620-05dc-4359-91ec-2080af215486.png)
 
 
 
-Trước tiên phải kiểm tra xem MariaDB đang chạy ở phiên bản nào, ta sử dụng lệnh `netstat -lutnp`
+Trước tiên phải kiểm tra xem MariaDB đang chạy ở trên port nào, ta sử dụng lệnh `netstat -lutnp`
+
 ![port mariadb](https://user-images.githubusercontent.com/84270045/148676777-fdb90cd0-2f8e-43c5-b9d0-5788d5692819.png)
 
-Hiện tại thì MariaDB đang chạy ở port 3306 và chạy trên IPv6. 
+Hiện tại thì MariaDB đang chạy ở trên port 3306 và chạy trên IPv6. 
 
-<a name="CauHinhDatabseServer"></a>
-### 1. Cấu hình database server.
-Ta tiến hành truy cập vào MariaDB:
+<a name="CauHinhVaKetNoiTuXa"></a>
+### 1. Cấu hình Database Server và tiến hành kết nối từ xa tới MariaDB
+
+Để có thể kết nối từ xa tới MariaDB Server thì ta cần thêm dòng `bin-address=0.0.0.0` vào file cấu hình server. Ta làm như sau:
+- Trước tiên ta `cd`đến thư mục `etc`:
+
+![etc](https://user-images.githubusercontent.com/84270045/149128796-8300af64-994a-4431-8237-4c30219bf367.png)
+
+- Tại đây ta thấy xuất hiện thự mục `my.cnf.d`. Đây là thư mục chứa thông số mô ta của Server và Client, ta tiếp tục `cd` và thư mục `my.cnf.d`:
+
+![cau_hinh_server](https://user-images.githubusercontent.com/84270045/149129281-876d6b77-7df8-448f-8acb-7d216c554ca7.png)
+
+- Sau khi truy cập được vào thư mục `my.cnf.d` ta sử dụng lệnh `vi` để mở file Server và chỉnh sửa:
+
+![bin_address](https://user-images.githubusercontent.com/84270045/149129836-596f1866-856e-410e-8c78-433e0954d47f.png)
+
+Mặc định ban đầu đầu `bind-address=127.0.0.1` ta sẽ đổi thành `bind-address=0.0.0.0`. Sau khi thay đổi ta tiến hành lưu file và khởi động lại MariaDB.
 ```
-[root@duy ~]# mysql
-Welcome to the MariaDB monitor.  Commands end with ; or \g.
-Your MariaDB connection id is 15
-Server version: 10.4.22-MariaDB MariaDB Server
-
-Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
-
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-
-MariaDB [(none)]>
+[root@duy my.cnf.d]# systemctl restart mariadb
 ```
-Tại đây ta đưa ra câu lệnh query SELECT User, Host ở trong database mysql tương tác với bảng tới host có chữ `localhost`:
+
 
 Nếu muốn có thể kết nối với MariaDB từ bất kì cái ip nào ở đường mạng `192.124.1.0/24` thì lúc này ta sử dụng câu lệnh `GRANT ALL PRIVILEGES ON *.* TO 'root'@'192.168.1.%' IDENTIFIED BY 'Password' WITH GRANT OPTION;`
 

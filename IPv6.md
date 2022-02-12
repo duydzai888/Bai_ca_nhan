@@ -1,7 +1,17 @@
 # IPv6
+## Menu
+[1. Cách biểu diễn địa chỉ IPv6.](#CachBieuDien)
+
+[2. Phân loại IPv6.](#PhanLoai)
+- [2.1. Địa chỉ Unicast.](#Unicast)
+- [2.2. Địa chỉ Multicast.](#Multicast)
+- [2.3. Địa chỉ Anycast.](#Anycast)
 
 
-### 1. Cách biểu diễn địa chỉ IPv6
+
+
+<a name="CachBieuDien"></a>
+### 1. Cách biểu diễn địa chỉ IPv6.
 Địa chỉ IPv6 không được trình bày ở dạng thập phân như địa chỉ IPv4 mà ở dạng thập lục phân, do IPv6 có chiều dài 128 byte nên IPv6 được quy ước chia thành 8 nhóm, mỗi nhóm gồm 2 byte và cách nhau bởi dấu ":" (hai chấm).
 
                             X:X:X:X:X:X:X:X
@@ -31,9 +41,11 @@ VD: 2031:0517:0000:0000:A5C7:0000:0000:130B
 
 -> 2031:517::A5C7:0:0:130B (Đúng)
 
+<a name="PhanLoai"></a>
 ### 2. Phân loại IPv6.
 IPv6 có 3 loại địa chỉ chính: Unicast, Multicast và Anycast.
 
+<a name="Unicast"></a>
 ##### 2.1. Địa chỉ Unicast
 Địa chỉ Unicast là địa chỉ định danh cho một thiết bị (interface hay card mạng). Một gói tin được gửi đến địa chỉ Unicast là được chuyển đến interface định danh bởi địa chỉ đó. Địa chỉ Unicast có 2 loại:
 
@@ -53,6 +65,7 @@ IPv6 có 3 loại địa chỉ chính: Unicast, Multicast và Anycast.
 
 3 byte đầu tiên được gán giá trị 001. Do đó, địa chỉ Global Unicast thường có dạng `2001::/3`.
 
+<a name="Multicast"></a>
 ##### 2.2. Địa chỉ Multicast.
 Địa chỉ Multicast định danh nhiều host/interface. Một gói tin khi gửi đến địa chỉ này có nghĩa nó sẽ được gửi đến các host/interface tương ứng. Địa chỉ Multicast thường có Prefix là `FF00::/8`
 
@@ -62,7 +75,8 @@ IPv6 có 3 loại địa chỉ chính: Unicast, Multicast và Anycast.
 - 4 bit kế tiếp là Scope: quy định phạm vi của địa chỉ Multicast.
 - 112 bit còn lại: định danh nhóm các host/interface có cùng địa chỉ Multicast.
 
-### 2.3. Địa chỉ Anycast.
+<a name="Anycast"></a>
+#### 2.3. Địa chỉ Anycast.
 Địa chỉ Anycast là địa chỉ được gán cho một nhóm các host/interface không cùng một node mạng. Khi một gói tin được gửi đến địa chỉ Anycast, nó sẽ được gửi đến host/interface nghĩa là đó chính là địa chỉ Anycast. Địa chỉ Anycast về mặt cấu trúc thì không khác gì so với địa chỉ Unicast vì nó được cấp phát từ không gian địa chỉ Anycast. Việc gán địa chỉ Unicast cho nhiều hơn 1 host/interface nghĩa là đó chính là địa chỉ Anycast
 
 

@@ -1,4 +1,4 @@
-# Cài đặt Wordpress
+# Cài đặt Wordpress 1 node
 ## Menu
 [1. Tắt firewall.](#TatFirewall)
 
@@ -42,12 +42,15 @@ Sử dụng lệnh `systemctl status httpd` để kiểm tra xem apache đã ho�
 
 <a name="CaiDatPHP"></a>
 ### 3. Cài đặt gói `php`.
-Sử dụng `yum` để cài php
+Cài đặt kho remi
 ```
-yum install -y php-mysqlnd
+yum install -y yum-utils http://rpms.remirepo.net/enterprise/remi-release-7.rpm
 ```
 
+Sau khi cài đặt gói Remi xong, các bạn cần chọn phiên bản PHP mà mình cần cài đặt và kích hoạt gói chứa phiên bản PHP đó. Ở hướng dẫn này mình sẽ cài đặt PHP 8.0 nên sẽ kích hoạt gói bằng lệnh sau:
 ```
+yum-config-manager --enable remi-php80
+
 yum install -y php php-common php-opcache php-mcrypt php-cli php-gd php-curl php-mysqlnd
 ```
 Sau đó ta khởi động lại `httpd` bằng lệnh: `systemctl restart httpd`

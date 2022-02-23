@@ -10,6 +10,9 @@
 
 [5. Cài đặt Wordpress](#CaiDatWordpress)
 
+## Mô hình
+
+![Wordpress1node](https://user-images.githubusercontent.com/84270045/155252881-22cb5ba5-6006-4abf-960f-f2a35fa3314c.png)
 
 
 

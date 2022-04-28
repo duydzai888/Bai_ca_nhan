@@ -21,7 +21,7 @@
     - Truy cập file `/etc/default/grub` với lệnh `vi` để chỉnh sửa
     - Tìm đến dòng `GRUB_CMDLINE_LINUX` và thêm đoạn `net.ifname=0 biosdevname=0`. 
     
-https://imgur.com/OmcKsxm
+    
     
     - Sinh lại tệp `Grub` và ghi đè len tệp hiện có ta sử dụng lệnh `grub2-mkconfig -o /boot/grub2/grub.cfg`
     

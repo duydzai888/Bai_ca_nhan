@@ -17,16 +17,16 @@
 ## 2. Tiến hành thay đổi tên card mạng.
   
   ### B1: Chỉnh sửa tham số Kernel boot.
-    
+``` 
     - Truy cập file `/etc/default/grub` với lệnh `vi` để chỉnh sửa
     - Tìm đến dòng `GRUB_CMDLINE_LINUX` và thêm đoạn `net.ifname=0 biosdevname=0`. 
+```
     
-    
-    
+``` 
     - Sinh lại tệp `Grub` và ghi đè len tệp hiện có ta sử dụng lệnh `grub2-mkconfig -o /boot/grub2/grub.cfg`
     
     ![grub](https://user-images.githubusercontent.com/84270045/142418981-fac2712d-2269-4fdd-9635-c5ddc492a1d3.png)
-
+```
 ### B2: Chỉnh sửa file cấu hình mạng
 - Ta truy cập vào file theo đường dẫn `/etc/sysconfig/network-scripts/ifcfg-ens33` và sử dụng `vi` để chỉnh sửa
 

@@ -23,7 +23,7 @@
 # 3. Tiến hành cấu hình IP tĩnh
 <a name="Centos7"></a>
 ### 3.1. Cấu hình IP trên Centos 7.
-- Kiểm tra card mạng tương ứng: Ta sử dụng lệnh `ip link show`.
+- Kiểm tra card mạng tương ứng: Ta sử dụng lệnh `ip a`.
 
 ![ip link show](https://user-images.githubusercontent.com/84270045/141282521-13359b2b-d0b8-4e70-8a35-3bb9c606d9a3.png)
 - Giờ ta có card mạng `ens33` thì ta cần tạo 1 file cấu hình có tên tiền tố là `ifcfg-<tên card mạng>` trong thư mục `/etc/sysconfig/network-scripts/`. Ví dụ dưới đây thì ta sẽ tạo file `ifcfg-ens33`.
@@ -35,7 +35,6 @@
 ```
 [root@client ~]# systemctl restart network
 ```
- **Vậy là bạn đã hoàn tất các thao tác để có thể tự cài đặt địa chỉ IP tĩnh trên CentOS 7 rồi.**
  
  <a name="Ubuntu20"></a>
  ### 3.2 Cấu hình ip tĩnh trên Ubuntu20.

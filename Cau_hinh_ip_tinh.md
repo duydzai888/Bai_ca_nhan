@@ -55,9 +55,4 @@
  
  ![checck lại ip](https://user-images.githubusercontent.com/84270045/141718036-4f033473-fae7-4197-905e-1860aec9f7dc.png)
  
- <a name="PingIP"></a>
- # 4. Ping ip từ máy khác:
- 
- ![ping ip trên máy vật lí](https://user-images.githubusercontent.com/84270045/141718717-9a66d6d7-640b-4e7a-9866-ce3c4ddfe028.png)
- 
   ## Vậy là đã hoàn thành công việc đặt địa chỉ IP tĩnh.

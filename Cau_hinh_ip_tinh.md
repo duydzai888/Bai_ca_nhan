@@ -30,7 +30,7 @@
 ```
 [root@client ~]# vi /etc/sysconfig/network-scripts/ifcfg-ens33
 ```
-![Screenshot_1](https://user-images.githubusercontent.com/84270045/141282981-4dad87e7-ff26-4a7a-809c-82eee146e3eb.png)
+![image](https://user-images.githubusercontent.com/84270045/165949285-b7e24145-155f-44b0-a24d-7dd323a202ff.png)
 - Sau khi đã hoàn tất cấu hình IP tĩnh như trên thì ta sẽ khởi động lại dịch vụ network trên CentOS 7.
 ```
 [root@client ~]# systemctl restart network

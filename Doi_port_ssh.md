@@ -67,3 +67,4 @@ Ta truy cập file `sshd_config` và tìm dòng `#PermitRootLogin yes`. Sau đó
 
 Sau đó ta dùng lệnh `systemctl restart sshd` để reset SSH.
 
+Lưu ý: Phải tắt SELinux.

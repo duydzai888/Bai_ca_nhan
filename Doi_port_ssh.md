@@ -52,7 +52,7 @@ ssh_port_t                     tcp      222, 22
 Trường hợp máy bạn chưa có `semanage`thì chúng ta phải cài đặt trước. Sử dụng lệnh `yum install policycoreutils-python`để tạo. Sau khi tạo xong tiến hành kiểm tra như trên.
 Cuối cùng là mở port mới cho dịch vụ ssh trên firewall
 ```
-[root@laiduy ~]# firewall-cmd --permanent --add-port=2220/tcp
+[root@laiduy ~]# firewall-cmd --permanent --add-port=222/tcp
 ```
 Khởi động lại firewall để có hiệu lực:
 ```
